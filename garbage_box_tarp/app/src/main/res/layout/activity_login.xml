@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".Login">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/logo_top"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="82dp"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+
+
+
+
+        android:layout_marginLeft="20dp"
+        android:text="Verify Number"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_marginTop="130dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/num"
+            android:layout_marginLeft="20dp"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/rec"
+            android:layout_marginLeft="90dp"
+
+            />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/rec"
+            android:layout_marginLeft="90dp"
+
+            />
+
+
+
+    </FrameLayout>
+
+    <EditText
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="147dp"
+        android:textColorHint="#A2A2A2"
+        android:inputType="number"
+        android:textColor="#A2A2A2"
+
+        android:background="@android:color/transparent"
+        android:textSize="16dp"
+        android:id="@+id/ed1"
+        android:hint="Enter your phone number" />
+
+    <EditText
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_alignParentTop="true"
+        android:textColorHint="#A2A2A2"
+        android:textColor="#A2A2A2"
+        android:layout_marginTop="220dp"
+        android:textSize="16dp"
+        android:background="@android:color/transparent"
+        android:hint="Enter your full name"
+        android:id="@+id/ed2"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/conti"
+        android:background="@null"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="290dp"
+        android:id="@+id/btn"
+
+        />
+
+
+
+
+</RelativeLayout>
