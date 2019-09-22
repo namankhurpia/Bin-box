@@ -32,7 +32,6 @@ public class home extends AppCompatActivity {
 
     TextView name_tv,today_count_tv,total_count_tv;
     ImageButton donate_more;
-    FrameLayout layoutforwait;
 
     private DatabaseReference mDatabase;
 
@@ -40,9 +39,11 @@ public class home extends AppCompatActivity {
     String result_after_scan=null;
     int today_count=0;
     int total_count=0;
-    String level = "level1";
-    String result_from_firebase=null;
-    boolean check=false;
+
+
+    String value;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,92 +51,77 @@ public class home extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
-        today_count_tv = (TextView)findViewById(R.id.todayc);
-        total_count_tv = (TextView)findViewById(R.id.totalc);
-        update_Layout_for_counts();
-
-        layoutforwait  =(FrameLayout)findViewById(R.id.layoutforwait);
-        hide_layout_for_wait();
-
-        read_name_from_internal();
-        read_count_from_internal();
-        name_tv = (TextView)findViewById(R.id.namee);
-        name_tv.setText("Hi "+name_str);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        donate_more = (ImageButton)findViewById(R.id.donate);
-        donate_more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                opencam();
-                show_layout_for_wait();
-
-            }
-        });
+        today_count_tv = (TextView) findViewById(R.id.todayc);
+        total_count_tv = (TextView) findViewById(R.id.totalc);
 
 
-    }
+        //default val
+        SharedPreferences prefss = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String today_count_str_def = prefss.getString("today_count", "");
+        String  total_count_str_def = prefss.getString("total_count", "");
+        today_count_tv.setText(today_count_str_def);
+        total_count_tv.setText(total_count_str_def);
 
+        //default
 
-    private void read_count_from_internal() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        SharedPreferences.Editor edit = prefs.edit();
-        today_count = prefs.getInt("today_count",0);
-        total_count = prefs.getInt("total_count",0);
-        Log.d("###today_count_internal",today_count+"");
-        Log.d("###total_count_internal",total_count+"");
-    }
+        try {
+            value = getIntent().getExtras().getString("add");
+            Log.d("^^^^", value);
 
+        } catch (Exception e) {
 
-    private void hide_layout_for_wait() {
-        layoutforwait.setVisibility(View.GONE);
-    }
+        } finally {
 
-    private void check_for_condition() {
+            if(value.equals(1+"")){
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                SharedPreferences.Editor edit = prefs.edit();
+                String today_count_str = prefs.getString("today_count", "");
+                today_count = Integer.parseInt(today_count_str);
+                String  total_count_str = prefs.getString("total_count", "");
+                total_count = Integer.parseInt(total_count_str);
+
+                Log.d("$$$$ todaycount", today_count + "");
+                Log.d("$$$$ totalcount", total_count + "");
+                today_count = today_count + 1;
+                total_count = total_count + 1;
+                today_count_tv.setText(today_count + "");
+                total_count_tv.setText(total_count + "");
 
 
 
-            if (result_after_scan != null) {
-                Log.d("$$$$$", "got in");
-                DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference rf = db.child(result_after_scan).child("condition");
+                edit.putString("today_count",today_count+"");
+                edit.putString("total_count",total_count+"");
+                edit.commit();
 
-                rf.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        Object res = dataSnapshot.getValue();
-                        result_from_firebase = String.valueOf(res);
-                        Log.d("####value from firebase", result_from_firebase);
-                        add_points();
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        hide_layout_for_wait();
-
-                    }
-                });
-            } else {
-                Log.d("$$$$$", "scan quickly_timeout");
             }
 
 
+            read_name_from_internal();
+            //read_count_from_internal();
+            name_tv = (TextView) findViewById(R.id.namee);
+            name_tv.setText("Hi " + name_str);
+
+
+
+
+            donate_more = (ImageButton) findViewById(R.id.donate);
+            donate_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    opencam();
+
+                }
+            });
+
+
+        }
+
     }
 
-    private void update_in_firebase() {
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child(result_after_scan).child("condition").setValue("closed");
-    }
-
-    private void show_layout_for_wait() {
-        layoutforwait.setVisibility(View.VISIBLE);
-    }
 
 
-    private void read_name_from_internal() {
+    private void read_name_from_internal()
+    {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         SharedPreferences.Editor edit = prefs.edit();
         name_str = prefs.getString("name","");
@@ -167,8 +153,11 @@ public class home extends AppCompatActivity {
             else {
                 result_after_scan = result.getContents();
                 Toast.makeText(this, result.getContents(),Toast.LENGTH_LONG).show();
-                check = true;
-                check_for_condition();
+                Intent i = new Intent(home.this, loading_activity.class);
+                i.putExtra("bin_no", result_after_scan);
+                startActivity(i);
+
+
 
             }
         }
@@ -177,27 +166,6 @@ public class home extends AppCompatActivity {
         }
     }
 
-    private void add_points() {
-        if (result_from_firebase.equals("open"))
-        {
-            today_count = today_count + 1;
-            total_count = total_count + 1;
-            update_Layout_for_counts();
-            hide_layout_for_wait();
-            update_in_firebase();
 
-        } else {
-            Toast.makeText(getApplicationContext(), "Slow internet", Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    private void update_Layout_for_counts() {
-        total_count_tv.setText(total_count+"");
-        today_count_tv.setText(today_count+"");
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        SharedPreferences.Editor edit = prefs.edit();
-
-        edit.putString("today_count", today_count+"");
-        edit.putString("total_count",total_count+"");
-    }
 }

@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
                     if(!previouslyStarted) {
                         SharedPreferences.Editor edit = prefs.edit();
                         edit.putBoolean("Alreadystarted", Boolean.TRUE);
+                        edit.putString("today_count",0+"");
+                        edit.putString("total_count",0+"");
                         edit.commit();
 
                         //transfer to slide
@@ -42,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     else{
-                        startActivity(new Intent(MainActivity.this,home.class));
+                        Intent i = new  Intent(MainActivity.this,home.class);
+
+                        i.putExtra("add","0");
+                        startActivity(i);
                     }
 
 

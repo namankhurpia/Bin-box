@@ -23,7 +23,6 @@
             android:text="Hi Naman"
             android:id="@+id/namee"
             android:textStyle="bold"
-
             android:textColor="@android:color/white"
             android:textSize="30dp"
             android:layout_marginTop="100dp"
@@ -32,102 +31,85 @@
             />
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ready to contribute to a Cleaner Society"
             android:textColor="@android:color/white"
             android:layout_marginTop="140dp"
             android:layout_marginLeft="20dp"
+
             />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="189dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:src="@mipmap/level" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="148dp"
-                android:src="@mipmap/coins_tdy" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="270dp"
-                android:src="@mipmap/coins_ttl" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="223dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:id="@+id/todayc"
-                android:layout_marginLeft="190dp"
-                android:textSize="29dp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="29dp"
-                android:id="@+id/totalc"
-                android:layout_marginLeft="315dp"/>
-
-
-
-        </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_marginTop="350dp"
-
-        android:id="@+id/layoutforwait"
-        android:layout_centerHorizontal="true"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="190dp"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/coins_tdy"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/coins_tdy"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:id="@+id/todayc"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="WAIT"
-        android:textSize="100dp"
-        android:textColor="@android:color/white"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/coins_tdy"
+            android:layout_toRightOf="@+id/coins_tdy"
+            android:layout_marginLeft="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/coins_tdy"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="25dp"
+            android:text="69"
+            android:textColor="#FFFFFF"
+            android:id="@+id/totalc"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/level"
+            android:layout_toLeftOf="@+id/coins_tdy"
+            android:layout_marginRight="20dp"
+
+            />
 
 
 
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You can Throw the Garbage"
-        android:layout_marginTop="130dp"
 
-        android:textSize="20dp"
+    </RelativeLayout>
 
-        />
 
-    </FrameLayout>
+
+
+
+
 
         <ImageButton
             android:layout_width="match_parent"

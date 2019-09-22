@@ -49,11 +49,11 @@ public class Login extends AppCompatActivity {
                 SharedPreferences.Editor edit = prefs.edit();
                 edit.putString("name", name);
                 edit.putString("phone",ph);
-                edit.putString("today_count", 0+"");
-                edit.putString("total_count",0+"");
+
                 edit.commit();
 
                 Intent  i = new Intent(Login.this,home.class);
+                i.putExtra("add","0");
                 startActivity(i);
 
             }
