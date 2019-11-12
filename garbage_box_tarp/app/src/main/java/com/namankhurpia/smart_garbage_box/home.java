@@ -33,17 +33,51 @@ public class home extends AppCompatActivity {
     TextView name_tv,today_count_tv,total_count_tv;
     ImageButton donate_more;
 
-    private DatabaseReference mDatabase;
+
 
     String name_str;
     String result_after_scan=null;
     int today_count=0;
     int total_count=0;
 
+    ImageButton buynote,buyoctane;
+    TextView ava_note,ava_octane,unava_note, unava_octane;
 
-    String value;
+    private DatabaseReference mDatabase;
 
+    String value="bin9876";
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        SharedPreferences prefss = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final String today_count_str_def = prefss.getString("today_count", "");
+        String  total_count_str_def = prefss.getString("total_count", "");
+        today_count_tv.setText(today_count_str_def);
+        total_count_tv.setText(total_count_str_def);
+        if(Integer.parseInt(today_count_str_def)>=10)
+        {
+            ava_note.setVisibility(View.VISIBLE);
+            unava_note.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            unava_note.setVisibility(View.VISIBLE);
+            ava_note.setVisibility(View.INVISIBLE);
+        }
+        if(Integer.parseInt(today_count_str_def)>=5)
+        {
+            ava_octane.setVisibility(View.VISIBLE);
+            unava_octane.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            ava_octane.setVisibility(View.INVISIBLE);
+            unava_octane.setVisibility(View.VISIBLE);
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +87,47 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         today_count_tv = (TextView) findViewById(R.id.todayc);
         total_count_tv = (TextView) findViewById(R.id.totalc);
+        buynote = (ImageButton)findViewById(R.id.notebuy);
+        buyoctane = (ImageButton)findViewById(R.id.octanebuy);
+        ava_note = (TextView)findViewById(R.id.ava_notebook);
+        ava_octane = (TextView)findViewById(R.id.ava_octane);
+        unava_note =(TextView)findViewById(R.id.unava_notebook);
+        unava_octane = (TextView)findViewById(R.id.unava_octane);
 
+        ava_note.setVisibility(View.INVISIBLE);
+        ava_octane.setVisibility(View.INVISIBLE);
+        unava_note.setVisibility(View.INVISIBLE);
+        unava_octane.setVisibility(View.INVISIBLE);
 
         //default val
         SharedPreferences prefss = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String today_count_str_def = prefss.getString("today_count", "");
+        final String today_count_str_def = prefss.getString("today_count", "");
         String  total_count_str_def = prefss.getString("total_count", "");
         today_count_tv.setText(today_count_str_def);
         total_count_tv.setText(total_count_str_def);
 
         //default
+
+        if(Integer.parseInt(today_count_str_def)>=10)
+        {
+            ava_note.setVisibility(View.VISIBLE);
+            unava_note.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            unava_note.setVisibility(View.VISIBLE);
+            ava_note.setVisibility(View.INVISIBLE);
+        }
+        if(Integer.parseInt(today_count_str_def)>=5)
+        {
+            ava_octane.setVisibility(View.VISIBLE);
+            unava_octane.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            ava_octane.setVisibility(View.INVISIBLE);
+            unava_octane.setVisibility(View.VISIBLE);
+        }
 
         try {
             value = getIntent().getExtras().getString("add");
@@ -116,8 +181,128 @@ public class home extends AppCompatActivity {
 
         }
 
+        buyoctane.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                SharedPreferences.Editor edit = prefs.edit();
+
+                String today_count_str = prefs.getString("today_count", "");
+                today_count = Integer.parseInt(today_count_str);
+                String  total_count_str = prefs.getString("total_count", "");
+                total_count = Integer.parseInt(total_count_str);
+
+                Log.d("$$$$ buy octane", today_count + "");
+                Log.d("$$$$ buy octanee", total_count + "");
+
+                if(today_count>=5)
+                {
+                    today_count = (today_count) -5;
+                    total_count = (total_count) -5;
+
+                    today_count_tv.setText(today_count + "");
+                    total_count_tv.setText(total_count + "");
+                    edit.putString("today_count",today_count+"");
+                    edit.putString("total_count",total_count+"");
+                    edit.commit();
+
+                    Toast.makeText(getApplicationContext(),"CONGRATULATIONS!! CLASSMATE OCTANE PURCHASED",Toast.LENGTH_LONG).show();
+                    if(Integer.parseInt(today_count_str_def)>=10)
+                    {
+                        ava_note.setVisibility(View.VISIBLE);
+                        unava_note.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        unava_note.setVisibility(View.VISIBLE);
+                        ava_note.setVisibility(View.INVISIBLE);
+                    }
+                    if(Integer.parseInt(today_count_str_def)>=5)
+                    {
+                        ava_octane.setVisibility(View.VISIBLE);
+                        unava_octane.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        ava_octane.setVisibility(View.INVISIBLE);
+                        unava_octane.setVisibility(View.VISIBLE);
+                    }
+                    pushinfirebase();
+
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"NOT ENOUGH POINTS",Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+        });
+
+        buynote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                SharedPreferences.Editor edit = prefs.edit();
+
+
+                Log.d("$$$$ buy note", today_count + "");
+                Log.d("$$$$ buy note", total_count + "");
+
+                if(today_count>=10)
+                {
+                    int updatetoday = (today_count) -10;
+                    int updatetotal = (today_count) -10;
+
+
+
+                    today_count_tv.setText(updatetoday + "");
+                    total_count_tv.setText(updatetotal + "");
+                    edit.putString("today_count",updatetoday+"");
+                    edit.putString("total_count",updatetotal+"");
+                    edit.commit();
+
+                    Toast.makeText(getApplicationContext(),"CONGRATULATIONS!! CLASSMATE NOTEBOOK PURCHASED",Toast.LENGTH_LONG).show();
+                    if(Integer.parseInt(today_count_str_def)>=10)
+                    {
+                        ava_note.setVisibility(View.VISIBLE);
+                        unava_note.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        unava_note.setVisibility(View.VISIBLE);
+                        ava_note.setVisibility(View.INVISIBLE);
+                    }
+                    if(Integer.parseInt(today_count_str_def)>=5)
+                    {
+                        ava_octane.setVisibility(View.VISIBLE);
+                        unava_octane.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        ava_octane.setVisibility(View.INVISIBLE);
+                        unava_octane.setVisibility(View.VISIBLE);
+                    }
+                    pushinfirebase();
+
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"NOT ENOUGH POINTS",Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+        });
+
     }
 
+    private void pushinfirebase() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rf = db.child(value).child("condition");
+        mDatabase.child("purchase").child("name").setValue("NAMAN KHURPIA purchased OCTANE");
+    }
 
 
     private void read_name_from_internal()

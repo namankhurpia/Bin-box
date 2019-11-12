@@ -111,13 +111,7 @@
 
 
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:src="@mipmap/nav"
-            android:id="@+id/nav"
-            android:background="@null" />
+
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -125,10 +119,80 @@
             android:src="@mipmap/donate"
             android:background="@null"
             android:id="@+id/donate"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="50dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/notebook"
+        android:background="@null"
+        android:id="@+id/notebuy"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="300dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AVAILABLE"
+        android:textColor="#2CFF1D"
+        android:id="@+id/ava_octane"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="245dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UNAVAILABLE"
+        android:textColor="#FF1D2C"
+        android:id="@+id/unava_octane"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="215dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AVAILABLE"
+        android:textColor="#2CFF1D"
+        android:id="@+id/ava_notebook"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="390dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UNAVAILABLE"
+        android:id="@+id/unava_notebook"
+        android:textColor="#FF1D2C"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="360dp"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/octane"
+        android:background="@null"
+        android:id="@+id/octanebuy"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="150dp"
+        />
 
 
     </RelativeLayout>
