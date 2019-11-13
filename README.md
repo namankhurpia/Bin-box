@@ -1,6 +1,6 @@
 # Bin-box
 
-![alt text](https://raw.githubusercontent.com/namankhurpia/Bin-box/master/python script and arduino code/python script/bin box/bin_box_res/drawable-xxhdpi/logo_top.png)
+![alt text](https://raw.githubusercontent.com/namankhurpia/Bin-box/master/python%20script%20and%20arduino%20code/python%20script/bin%20box/bin_box_res/drawable-xxhdpi/logo_top.png)
 
 Smart garbage box, this repository contains android app code for smart garbage box, on proper disposal of garbage in bin results in adding points in the app which can be further used to redeem products from the store.
 <br>
